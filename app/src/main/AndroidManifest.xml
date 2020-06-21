@@ -177,6 +177,13 @@
         <meta-data
             android:name="com.bugsnag.android.API_KEY"
             android:value="83cf680ed01a6fda10fe497d1c0962bb" />
+
+        <receiver android:name=".JacocoInstrument.SMSInstrumentedReceiver">
+            <intent-filter>
+                <action android:name="edu.gatech.m3.emma.COLLECT_COVERAGE" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.gladed.androidgitversion'
+apply plugin: 'jacoco'
 
 apply from: '../spotless.gradle'
 
@@ -102,6 +103,8 @@ android {
             resValue "string", "frost_name", "Frost Debug"
             resValue "string", "frost_web", "Frost Web Debug"
             ext.enableBugsnag = false
+
+            testCoverageEnabled true
 
             kotlinOptions.freeCompilerArgs += compilerArgs
         }
