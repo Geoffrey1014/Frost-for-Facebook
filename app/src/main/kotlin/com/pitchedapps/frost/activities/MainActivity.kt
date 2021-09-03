@@ -17,11 +17,14 @@
 package com.pitchedapps.frost.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.viewpager.widget.ViewPager
 import ca.allanwang.kau.utils.withMainContext
 import com.google.android.material.tabs.TabLayout
+import com.pitchedapps.frost.facebook.FbCookie
 import com.pitchedapps.frost.facebook.FbItem
 import com.pitchedapps.frost.utils.L
+import com.pitchedapps.frost.utils.MAIN_TIMEOUT_DURATION
 import com.pitchedapps.frost.views.BadgedIcon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -72,6 +75,19 @@ class MainActivity : BaseMainActivity() {
             lastPosition = 0
         } //trigger hook so title is set
     }
+
+
+
+//    override fun onPause() {
+//        super.onPause()
+//        Log.i("Themis", "onPause: ")
+//    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        Log.i("Themis", "onPause: ")
+//
+//    }
 
     private fun setupTabs() {
         viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))

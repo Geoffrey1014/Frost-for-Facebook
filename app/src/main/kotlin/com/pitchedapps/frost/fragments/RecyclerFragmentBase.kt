@@ -16,6 +16,7 @@
  */
 package com.pitchedapps.frost.fragments
 
+import android.util.Log
 import ca.allanwang.kau.adapters.fastAdapter
 import ca.allanwang.kau.utils.withMainContext
 import com.mikepenz.fastadapter.FastAdapter
@@ -31,12 +32,18 @@ import com.pitchedapps.frost.utils.frostJsoup
 import com.pitchedapps.frost.views.FrostRecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlin.math.log
 
 /**
  * Created by Allan Wang on 27/12/17.
  */
 abstract class RecyclerFragment<T, Item : IItem<*, *>> : BaseFragment(), RecyclerContentContract {
 
+// Geoffrey add this code
+//    companion object{ // 注解---1
+//        var counter = 0L
+//
+//    }
     override val layoutRes: Int = R.layout.view_content_recycler
 
     abstract val adapter: ModelAdapter<T, Item>
@@ -51,9 +58,15 @@ abstract class RecyclerFragment<T, Item : IItem<*, *>> : BaseFragment(), Recycle
 
     final override suspend fun reload(progress: (Int) -> Unit): Boolean = withContext(Dispatchers.IO) {
         val data = try {
+//            Log.i("Themis", "reload: step 0: ")
+//            if (counter >= 2){
+//                Log.i("Themis", "reload: step 1: 重新打开APP")
+//            }
+//            counter += 1
             reloadImpl(progress)
         } catch (e: Exception) {
             e.printStackTrace()
+            Log.i("Themis", "reload: step last")
             L.e(e) { "Recycler reload fail" }
             null
         }
