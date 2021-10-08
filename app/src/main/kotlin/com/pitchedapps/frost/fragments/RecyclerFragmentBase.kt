@@ -58,15 +58,11 @@ abstract class RecyclerFragment<T, Item : IItem<*, *>> : BaseFragment(), Recycle
 
     final override suspend fun reload(progress: (Int) -> Unit): Boolean = withContext(Dispatchers.IO) {
         val data = try {
-//            Log.i("Themis", "reload: step 0: ")
-//            if (counter >= 2){
-//                Log.i("Themis", "reload: step 1: 重新打开APP")
-//            }
-//            counter += 1
+            Log.i("Themis", "Event 1: reopen the app")
             reloadImpl(progress)
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.i("Themis", "reload: step last")
+            Log.i("Themis", "Crash!: Exception ")
             L.e(e) { "Recycler reload fail" }
             null
         }
